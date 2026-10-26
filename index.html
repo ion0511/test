@@ -150,7 +150,7 @@
             margin-top: 1rem;
         }
 
-        /* 2. 테스트 화면 (모든 질문창 크기 완벽 통일) */
+        /* 2. 테스트 화면 */
         .test-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -179,8 +179,6 @@
             margin-bottom: 0.5rem;
             letter-spacing: 1px;
         }
-        
-        /* 질문 제목 영역 높이 지정으로 줄 수 차이에 따른 덜컥거림 완전히 제거 */
         .question-area {
             min-height: 3.6rem;
             display: flex;
@@ -193,7 +191,6 @@
             word-break: keep-all;
             color: var(--text-main);
         }
-        
         .options-grid {
             display: flex;
             flex-direction: column;
@@ -212,7 +209,7 @@
             cursor: pointer;
             transition: all 0.2s ease;
             word-break: keep-all;
-            min-height: 3rem; /* 선택지 버튼도 최소 높이 부여 */
+            min-height: 3rem;
             display: flex;
             align-items: center;
         }
@@ -321,7 +318,6 @@
             font-size: 0.85rem;
         }
 
-        /* 안내서 스타일 */
         .guide-card {
             text-align: left;
         }
@@ -364,7 +360,7 @@
             border: 1px solid var(--border-color);
             border-radius: 16px;
             width: 100%;
-            height: 480px;
+            height: 500px;
             display: flex;
             flex-direction: column;
             box-shadow: 0 15px 35px rgba(0,0,0,0.6);
@@ -402,8 +398,6 @@
             border-radius: 50%;
             box-shadow: 0 0 6px #22c55e;
         }
-        
-        /* 닫기 버튼 작고 아담하게 수정 */
         .chat-close-btn {
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -420,14 +414,13 @@
             color: var(--gold-light);
             border-color: var(--gold);
         }
-        
         .chat-messages {
             flex: 1;
             padding: 1.2rem;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
+            gap: 0.6rem;
         }
         .chat-bubble {
             max-width: 80%;
@@ -681,12 +674,27 @@
                 secret: "밤마다 온실에서 들리는 정체불명의 피리 소리의 정체는 과연 무엇일까",
                 chat: {
                     first: [
-                        "환영해 신입생 청룡관에 온 걸 진심으로 축하해 긴장 풀고 편하게 있어",
-                        "안내서는 잘 읽어봤어 혹시 궁금한 거 있으면 뭐든 물어봐"
+                        "환영해 신입생! 청룡관에 온 걸 진심으로 축하해",
+                        "긴장 풀고 편하게 있어",
+                        "안내서는 잘 읽어봤어? 혹시 궁금한 거 있으면 뭐든 물어봐"
                     ],
                     options: [
-                        { text: "안내서에 나온 밤마다 빛난다는 영초 온실 진짜 들어가 볼 수 있어요?", reply: "벌써 그 떡밥에 꽂혔네 맞아 밤에 달빛 받으면 진짜 예쁘거든 원한다면 내일 출입증 들고 내가 직접 안내해 줄게 같이 가자" },
-                        { text: "제가 바람의 기류를 잘 탈 수 있을지 살짝 걱정이에요", reply: "에이 그런 걱정 마 내가 옆에서 바람 타는 법부터 차근차근 다 알려줄 테니까 성장의 한계는 없다고 했잖아 나를 믿고 따라와" }
+                        {
+                            text: "안내서에 나온 밤마다 빛난다는 영초 온실 진짜 들어가 볼 수 있어요?",
+                            reply: [
+                                "벌써 그 떡밥에 꽂혔네?",
+                                "맞아 밤에 달빛 받으면 진짜 예쁘거든",
+                                "원한다면 내일 출입증 들고 내가 직접 안내해 줄게 같이 가자"
+                            ]
+                        },
+                        {
+                            text: "제가 바람의 기류를 잘 탈 수 있을지 살짝 걱정이에요",
+                            reply: [
+                                "에이 그런 걱정 마!",
+                                "내가 옆에서 바람 타는 법부터 차근차근 다 알려줄 테니까",
+                                "성장의 한계는 없다고 했잖아 나를 믿고 따라와"
+                            ]
+                        }
                     ]
                 }
             },
@@ -702,12 +710,27 @@
                 secret: "매주 연단실 화로가 폭발할 뻔한 진짜 범인은 사실 따로 있다는데",
                 chat: {
                     first: [
-                        "오 드디어 우리 주작관 새 식구 입성 안내서 재밌었어",
-                        "지루한 건 절대 질색이니까 여기선 화끈하게 놀고 뜨겁게 배우는 거야 알겠지"
+                        "오! 드디어 우리 주작관 새 식구 입성!",
+                        "안내서는 재밌게 읽어봤어?",
+                        "지루한 건 절대 질색이니까 여기선 화끈하게 놀고 뜨겁게 배우는 거야 알겠지?"
                     ],
                     options: [
-                        { text: "안내서에 나온 주작관 화로가 학교 결계 전체를 유지한다는 게 진짜예요?", reply: "와 그걸 벌써 캐치했어? 센스 대박인데 맞아 그거 식으면 학교 전체 결계 흔들리니까 절대 장난치면 안 돼 매주 불 조절 실패하는 애들 구경하는 것도 꿀잼이지만" },
-                        { text: "련단술 하다가 실수로 제 방까지 태워먹으면 어쩌죠?", reply: "걱정 마시지 내가 옆에서 불 조절 특강이라도 해줄 테니까 네 안의 불꽃을 마음껏 태워봐 화끈하게 보여줄게" }
+                        {
+                            text: "안내서에 나온 주작관 화로가 학교 결계 전체를 유지한다는 게 진짜예요?",
+                            reply: [
+                                "와 그걸 벌써 캐치했어? 센스 대박인데!",
+                                "맞아 그거 식으면 학교 전체 결계가 흔들리니까 절대 장난치면 안 돼",
+                                "매주 불 조절 실패해서 연기 뿜는 애들 구경하는 것도 꿀잼이지만 ㅋㅋ"
+                            ]
+                        },
+                        {
+                            text: "련단술 하다가 실수로 제 방까지 태워먹으면 어쩌죠?",
+                            reply: [
+                                "걱정 마시지!",
+                                "내가 옆에서 불 조절 특강이라도 해줄 테니까",
+                                "네 안의 불꽃을 마음껏 태워봐 화끈하게 보여줄게!"
+                            ]
+                        }
                     ]
                 }
             },
@@ -720,15 +743,31 @@
                 imgSrc: "baekho.jpg",
                 slogan: "규율은 단단하게 검은 흔들림 없이",
                 curriculum: "• 법구 제작 및 주조: 번개와 쇠의 기운을 다루어 악귀를 막는 도구를 만드는 법\n• 액막이 퇴마술: 사악한 기운을 단칼에 제압하는 실전 결계 전투술",
-                secret: "지하 무기고 깊은 곳 봉인된 은빛 검이 밤마다 울부짓는 이유는 무엇인가",
+                secret: "지하 무기고 깊은 곳 봉인된 은빛 검이 밤마다 울부짖는 이유는 무엇인가",
                 chat: {
                     first: [
-                        "도착했군 백호관은 규율을 중시해 안내서 읽어봤으면 우리 관이 어떤 곳인지 감이 왔겠지",
+                        "도착했군",
+                        "백호관은 규율을 중시해 안내서 읽어봤으면 우리 관이 어떤 곳인지 감이 왔겠지",
                         "훈련이 꽤 깐깐하겠지만 정신 바짝 차리면 네 실력은 확실히 책임져 주마"
                     ],
                     options: [
-                        { text: "지하 무기고에 봉인되어 있다는 은빛 검 실제로 볼 수 있나요?", reply: "정보가 빠르군 그래 과거 악귀를 베던 전설의 검이지 하지만 그건 법구 제작 실습을 통과해야만 들어갈 수 있어 네가 그 자격을 얻어낼 수 있을지 기대해 보지" },
-                        { text: "규율이 엄격하다고 하니 조금 긴장되기는 하네요", reply: "엄격한 만큼 너를 가장 단단하게 지켜주는 방패가 되어줄 테니까 걱정 마 길 잃지 않게 바짝 따라오기나 해" }
+                        {
+                            text: "지하 무기고에 봉인되어 있다는 은빛 검 실제로 볼 수 있나요?",
+                            reply: [
+                                "정보가 빠르군",
+                                "그래 과거 악귀를 베던 전설의 검이지",
+                                "하지만 그건 법구 제작 실습을 통과해야만 들어갈 수 있어",
+                                "네가 그 자격을 얻어낼 수 있을지 기대해 보지"
+                            ]
+                        },
+                        {
+                            text: "규율이 엄격하다고 하니 조금 긴장되기는 하네요",
+                            reply: [
+                                "지나치게 긴장할 필요는 없다",
+                                "엄격한 만큼 너를 가장 단단하게 지켜주는 방패가 되어줄 테니까",
+                                "길 잃지 않게 바짝 따라오기나 해"
+                            ]
+                        }
                     ]
                 }
             },
@@ -744,12 +783,28 @@
                 secret: "지하 서고 끝 달빛이 비칠 때만 나타나는 비석의 숨겨진 문구에 담긴 진실은",
                 chat: {
                     first: [
-                        "어서 와 현무관은 소란스럽지 않아서 마음에 들 거야 안내서에 적힌 고대 문자 이야기는 흥미로웠어",
-                        "이곳에선 세상의 숨겨진 지혜와 진실을 탐구하게 되지 너는 어떤 것이 가장 궁금해"
+                        "어서 와",
+                        "현무관은 소란스럽지 않아서 마음에 들 거야 안내서에 적힌 고대 문자 이야기는 흥미로웠어?",
+                        "이곳에선 세상의 숨겨진 지혜와 진실을 탐구하게 되지",
+                        "너는 어떤 것이 가장 궁금해?"
                     ],
                     options: [
-                        { text: "지하 서고 끝에 달빛에만 나타난다는 고대 비석의 비밀이 알고 싶어요", reply: "질문이 아주 날카롭네 그 비석의 첫 번째 봉인을 해제할 권한은 오직 우리 관원에게만 주어지지 준비되면 언제든 서고로 와" },
-                        { text: "조용히 깊이 있게 음양오행 이론을 배워보고 싶습니다", reply: "좋은 자세야 물은 소리 없이 깊어지는 법이니까 천천히 원리를 깨달아보자꾸나 언제든 편하게 서고 문을 두드려" }
+                        {
+                            text: "지하 서고 끝에 달빛에만 나타난다는 고대 비석의 비밀이 알고 싶어요",
+                            reply: [
+                                "질문이 아주 날카롭네",
+                                "그 비석의 첫 번째 봉인을 해제할 권한은 오직 우리 관원에게만 주어지지",
+                                "준비되면 언제든 지하 서고로 와"
+                            ]
+                        },
+                        {
+                            text: "조용히 깊이 있게 음양오행 이론을 배워보고 싶습니다",
+                            reply: [
+                                "좋은 자세야",
+                                "물은 소리 없이 깊어지는 법이니까 천천히 원리를 깨달아보자꾸나",
+                                "언제든 편하게 서고 문을 두드려"
+                            ]
+                        }
                     ]
                 }
             }
@@ -873,6 +928,7 @@
             resultScreen.classList.add('active');
         });
 
+        // 엔터(배열) 단위로 톡톡 쏘아주는 순차적 메시지 출력 로직
         function startChatSequence() {
             let result = houseDetails[currentHouseKey];
             document.getElementById('chat-master-title').textContent = `${result.masterName} 기숙사장`;
@@ -884,17 +940,17 @@
 
             const chatData = result.chat;
 
-            setTimeout(() => {
-                appendMessage(chatData.first[0], 'master');
-            }, 400);
-
-            setTimeout(() => {
-                appendMessage(chatData.first[1], 'master');
-            }, 1400);
+            let delay = 300;
+            chatData.first.forEach((msgText) => {
+                setTimeout(() => {
+                    appendMessage(msgText, 'master');
+                }, delay);
+                delay += 800; // 0.8초 간격으로 톡 연달아 출력
+            });
 
             setTimeout(() => {
                 showChatOptions(chatData.options);
-            }, 2200);
+            }, delay + 200);
         }
 
         function appendMessage(text, sender) {
@@ -918,12 +974,44 @@
                     optionsContainer.innerHTML = '';
                     appendMessage(opt.text, 'user');
 
+                    // 기숙사장의 분할 답장 순차 출력
+                    let delay = 600;
+                    opt.reply.forEach((replyText) => {
+                        setTimeout(() => {
+                            appendMessage(replyText, 'master');
+                        }, delay);
+                        delay += 800;
+                    });
+
+                    // 대화 마무리에 공통 '천선원 생활 다짐' 버튼 생성
                     setTimeout(() => {
-                        appendMessage(opt.reply, 'master');
-                    }, 800);
+                        showFinalCommitmentBtn();
+                    }, delay + 400);
                 });
                 optionsContainer.appendChild(btn);
             });
+        }
+
+        // 공통 마무리 버튼 (좋아요 앞으로 천선원에서 생활 잘 부탁드려요!)
+        function showFinalCommitmentBtn() {
+            const optionsContainer = document.getElementById('chat-options');
+            optionsContainer.innerHTML = '';
+
+            const finalBtn = document.createElement('button');
+            finalBtn.className = 'mystic-btn';
+            finalBtn.style.fontSize = '0.88rem';
+            finalBtn.textContent = "좋아요 앞으로 천선원에서 생활 잘 부탁드려요!";
+            
+            finalBtn.addEventListener('click', () => {
+                optionsContainer.innerHTML = '';
+                appendMessage("좋아요 앞으로 천선원에서 생활 잘 부탁드려요!", 'user');
+
+                setTimeout(() => {
+                    appendMessage("그래! 멋진 학창 시절을 만들어 보자. 언제든 찾아와!", 'master');
+                }, 600);
+            });
+
+            optionsContainer.appendChild(finalBtn);
         }
     </script>
 </body>
