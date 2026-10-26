@@ -64,13 +64,12 @@ const questions = [
     }
 ];
 
-// 기숙사별 상세 정보, 개별 이미지 파일, 안내서 내용 데이터
 const houseDetails = {
     wood: {
         name: "청룡관 (靑龍館)",
         element: "목(木) · 바람과 식물",
         desc: "창의와 성장의 명가. 유연하고 기발하며, 생명력과 변화를 중시하는 학생들이 모이는 곳입니다.",
-        masterName: "재희", // 호칭 정리 반영
+        masterName: "재희",
         quote: "\"바람이 머무는 곳, 성장의 한계는 없다. 청룡관에 온 걸 환영해.\"",
         imgSrc: "cheongryong.jpg",
         slogan: "“바람을 타고, 끝없이 성장하라”",
@@ -81,7 +80,7 @@ const houseDetails = {
         name: "주작관 (朱雀館)",
         element: "화(火) · 불과 빛",
         desc: "열정과 예지의 명가. 용맹하고 정열적이며, 찰나의 직관과 뜨거운 도전 정신을 갖춘 학생들이 모이는 곳입니다.",
-        masterName: "시온", // 호칭 정리 반영
+        masterName: "시온",
         quote: "\"불꽃은 스스로 타오르는 법이지. 네 안에 숨겨진 열정을 태워봐.\"",
         imgSrc: "jujak.jpg",
         slogan: "“뜨겁게 타오르고, 세상을 밝혀라”",
@@ -92,7 +91,7 @@ const houseDetails = {
         name: "백호관 (白虎館)",
         element: "금(金) · 번개와 쇠",
         desc: "강직과 규율의 명가. 정의롭고 명예를 중시하며, 흔들리지 않는 단단한 결단력을 가진 학생들이 모이는 곳입니다.",
-        masterName: "유우시", // 호칭 정리 반영
+        masterName: "유우시",
         quote: "\"규율은 단단함을 만들고, 단단함은 우리를 지킨다. 길을 잃지 마.\"",
         imgSrc: "baekho.jpg",
         slogan: "“규율은 단단하게, 검은 흔들림 없이”",
@@ -103,7 +102,7 @@ const houseDetails = {
         name: "현무관 (玄武館)",
         element: "수(水) · 얼음과 암석",
         desc: "냉철하고 지혜를 탐구하는 은밀한 서고 같은 공간. 학교 설립의 비밀이 담긴 고대 비석이 숨겨져 있습니다.",
-        masterName: "리쿠", // 호칭 정리 반영
+        masterName: "리쿠",
         quote: "\"물은 소리 없이 깊어지지. 진실을 찾는 법을 함께 배워보자.\"",
         imgSrc: "hyeonmu.jpg",
         slogan: "“고요함 속에 진실을 꿰뚫어라”",
@@ -114,13 +113,13 @@ const houseDetails = {
 
 let scores = { wood: 0, fire: 0, metal: 0, water: 0 };
 let currentIdx = 0;
-let currentHouseKey = 'wood'; // 안내서로 넘길 때 사용하기 위해 저장
+let currentHouseKey = 'wood';
 
 const introScreen = document.getElementById('intro-screen');
 const testScreen = document.getElementById('test-screen');
 const loadingScreen = document.getElementById('loading-screen');
 const resultScreen = document.getElementById('result-screen');
-const guideScreen = document.getElementById('guide-screen'); // 안내서 화면
+const guideScreen = document.getElementById('guide-screen');
 
 const startBtn = document.getElementById('start-btn');
 const guideBtn = document.getElementById('guide-btn');
@@ -137,6 +136,16 @@ startBtn.addEventListener('click', () => {
     loadQuestion();
 });
 
+// 배열을 무작위로 섞는 헬퍼 함수 (선택지 랜덤 배치용)
+function shuffleArray(array) {
+    let arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
 function loadQuestion() {
     const qData = questions[currentIdx];
     currentQSpan.textContent = currentIdx + 1;
@@ -144,7 +153,11 @@ function loadQuestion() {
     progressFill.style.width = `${((currentIdx + 1) / questions.length) * 100}%`;
 
     optionsContainer.innerHTML = '';
-    qData.options.forEach(opt => {
+    
+    // 질문마다 선택지 순서가 매번 랜덤하게 섞이도록 처리
+    const shuffledOptions = shuffleArray(qData.options);
+
+    shuffledOptions.forEach(opt => {
         const btn = document.createElement('button');
         btn.className = 'option-btn';
         btn.textContent = opt.text;
@@ -186,11 +199,11 @@ function showResult() {
     document.getElementById('master-name').textContent = result.masterName;
     document.getElementById('master-quote').textContent = result.quote;
     
-    // 개별 이미지 파일 바인딩
+    // 기숙사별 개별 이미지 매핑 오류 수정
     document.getElementById('house-img').src = result.imgSrc;
 }
 
-// '천선원 기숙사 생활 안내서 보러 가기' 버튼 클릭 이벤트
+// 생활 안내서 보러 가기 버튼 이벤트 정상 바인딩
 guideBtn.addEventListener('click', () => {
     resultScreen.classList.remove('active');
     guideScreen.classList.add('active');
@@ -198,12 +211,12 @@ guideBtn.addEventListener('click', () => {
     let result = houseDetails[currentHouseKey];
     document.getElementById('guide-house-title').textContent = `${result.name} 생활 안내서`;
     document.getElementById('guide-slogan').textContent = result.slogan;
-    document.getElementById('guide-curriculum').style.whiteSpace = "pre-line"; // 줄바꿈 유지
+    document.getElementById('guide-curriculum').style.whiteSpace = "pre-line";
     document.getElementById('guide-curriculum').textContent = result.curriculum;
     document.getElementById('guide-secret').textContent = result.secret;
 });
 
-// 처음으로 돌아가기 버튼 클릭 이벤트
+// 처음으로 돌아가기 버튼
 restartFromGuideBtn.addEventListener('click', () => {
     scores = { wood: 0, fire: 0, metal: 0, water: 0 };
     currentIdx = 0;
