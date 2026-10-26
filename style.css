@@ -1,6 +1,6 @@
 :root {
     --bg-color: #0b0f19;
-    --card-bg: rgba(18, 24, 38, 0.95);
+    --card-bg: rgba(18, 24, 38, 0.85);
     --gold: #d4af37;
     --gold-light: #f3e5ab;
     --text-main: #e2e8f0;
@@ -26,6 +26,7 @@ body {
     padding: 1rem;
 }
 
+/* 몽환적인 안개 효과 배경 */
 .fog-container {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -44,12 +45,13 @@ body {
     100% { transform: translate(-50px, -30px) rotate(5deg); }
 }
 
+/* 화면 전환 공통 제어 */
 .screen {
     display: none;
     width: 100%;
-    max-width: 600px;
-    padding: 0.5rem;
-    animation: fadeIn 0.6s ease forwards;
+    max-width: 650px;
+    padding: 2rem;
+    animation: fadeIn 0.8s ease forwards;
 }
 .screen.active {
     display: flex;
@@ -57,45 +59,46 @@ body {
     align-items: center;
 }
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* 인트로 화면 */
+/* 1. 인트로 화면 */
 .intro-content {
     text-align: center;
 }
 .subtitle {
     color: var(--gold);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     letter-spacing: 3px;
     text-transform: uppercase;
 }
 h1 {
-    font-size: 2.8rem;
+    font-size: 3.2rem;
     color: var(--gold-light);
-    margin: 0.5rem 0 1rem;
-    letter-spacing: 4px;
+    margin: 0.5rem 0 1.2rem;
+    letter-spacing: 5px;
 }
 .desc {
     color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.7;
     margin-bottom: 2rem;
 }
 
+/* 원형 나침반 디자인 (첫 번째 코드 완벽 복원) */
 .compass-circle {
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
     overflow: hidden;
-    margin: 0 auto 2rem;
+    margin: 0 auto 2.5rem;
     border: 3px solid var(--gold);
     box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
     position: relative;
 }
 .compass-img {
-    width: 400%; 
+    width: 400%; /* 4분할 이미지를 원형 안에서 회전 */
     height: 100%;
     object-fit: cover;
     animation: rotateCompass 30s infinite linear;
@@ -108,34 +111,36 @@ h1 {
     100% { transform: translateX(0); }
 }
 
+/* 신비로운 버튼 스타일 */
 .mystic-btn {
     background: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
     color: #0b0f19;
     border: none;
-    padding: 0.9rem 1.8rem;
-    font-size: 1rem;
+    padding: 0.9rem 2.5rem;
+    font-size: 1.1rem;
     font-weight: 700;
     font-family: 'Noto Serif KR', serif;
     border-radius: 50px;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
     transition: all 0.3s ease;
-    width: 100%;
-    max-width: 320px;
 }
 .mystic-btn:hover {
-    transform: scale(1.02);
+    transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
 }
 
-/* 폰/PC 공용 반응형 질문 박스 (높이 억지 고정 완전히 해제) */
+/* 2. 테스트 화면 (첫 번째 코드에 min-height만 유연하게 추가해서 6번 질문 크기 고정) */
 .test-box {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 1.8rem 1.5rem;
+    padding: 2.5rem;
     border-radius: 16px;
     width: 100%;
-    height: auto; /* 고정 높이 제거해서 삐져나옴 방지 */
+    min-height: 480px; /* 크기 줄어듦 방지용 최소 높이만 지정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 .progress-bar {
@@ -143,7 +148,7 @@ h1 {
     height: 6px;
     background: rgba(255,255,255,0.1);
     border-radius: 3px;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
     overflow: hidden;
 }
 #progress-fill {
@@ -155,64 +160,61 @@ h1 {
 .question-number {
     color: var(--gold);
     font-size: 0.85rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
     letter-spacing: 1px;
 }
-.question-text-area {
-    margin-bottom: 1.5rem;
-}
 .test-box h2 {
-    font-size: 1.15rem;
+    font-size: 1.3rem;
+    margin-bottom: 1.8rem;
     line-height: 1.5;
-    word-break: keep-all; /* 한글 단어 깨짐 방지 */
-    color: var(--text-main);
+    word-break: keep-all;
 }
 .options-grid {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 1rem;
 }
 .option-btn {
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--text-main);
-    padding: 0.9rem 1.1rem;
+    padding: 1rem 1.2rem;
     text-align: left;
-    border-radius: 10px;
+    border-radius: 8px;
     font-family: 'Noto Serif KR', serif;
-    font-size: 0.9rem;
-    line-height: 1.4;
+    font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.2s ease;
     word-break: keep-all;
 }
 .option-btn:hover {
-    background: rgba(212, 175, 55, 0.18);
+    background: rgba(212, 175, 55, 0.15);
     border-color: var(--gold);
+    transform: translateX(5px);
 }
 
-/* 로딩 화면 */
+/* 3. 로딩 화면 */
 .loading-content {
     text-align: center;
 }
 .spinner {
-    width: 50px; height: 50px;
+    width: 60px; height: 60px;
     border: 4px solid rgba(212, 175, 55, 0.2);
     border-top: 4px solid var(--gold);
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    margin: 0 auto 1.2rem;
+    margin: 0 auto 1.5rem;
 }
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
-/* 결과 및 안내서 카드 */
+/* 4. 결과 화면 및 안내서 화면 */
 .result-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 1.8rem 1.5rem;
+    padding: 2.5rem;
     border-radius: 16px;
     width: 100%;
     text-align: center;
@@ -220,28 +222,28 @@ h1 {
 }
 .result-badge {
     color: var(--text-muted);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     letter-spacing: 2px;
 }
 .result-card h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin: 0.3rem 0;
 }
 .element-tag {
     display: inline-block;
-    padding: 0.25rem 0.9rem;
+    padding: 0.3rem 1rem;
     background: rgba(212, 175, 55, 0.15);
     border: 1px solid var(--gold);
     border-radius: 20px;
     color: var(--gold);
-    font-size: 0.85rem;
-    margin-bottom: 1.2rem;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
 }
 .result-img-container {
-    width: 130px;
-    height: 130px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    margin: 0 auto 1.2rem;
+    margin: 0 auto 1.5rem;
     border: 3px solid var(--gold);
     overflow: hidden;
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
@@ -254,65 +256,67 @@ h1 {
 
 .result-info {
     text-align: left;
-    background: rgba(0,0,0,0.25);
-    padding: 1rem;
+    background: rgba(0,0,0,0.2);
+    padding: 1.2rem;
     border-radius: 10px;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
 }
 .result-info h3 {
     color: var(--gold);
-    font-size: 0.9rem;
-    margin-bottom: 0.3rem;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
 }
 .result-info p {
-    font-size: 0.88rem;
+    font-size: 0.92rem;
     color: var(--text-muted);
     line-height: 1.5;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
 }
 .master-box {
     border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 0.6rem;
+    padding-top: 0.8rem;
 }
 .master-label {
     font-size: 0.75rem;
     color: var(--gold);
+    letter-spacing: 1px;
 }
 .master-box h4 {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--text-main);
-    margin: 0.1rem 0;
+    margin: 0.2rem 0;
 }
 .quote {
     font-style: italic;
     color: var(--text-muted);
-    font-size: 0.85rem;
+    font-size: 0.88rem;
 }
 
+/* 안내서 스타일 */
 .guide-card {
     text-align: left;
 }
 .guide-card h1 {
     text-align: center;
-    font-size: 1.6rem;
-    margin-bottom: 1.2rem;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
 }
 .guide-section {
     background: rgba(0,0,0,0.2);
-    padding: 0.9rem 1.1rem;
+    padding: 1.1rem 1.3rem;
     border-radius: 10px;
-    margin-bottom: 0.9rem;
+    margin-bottom: 1.1rem;
     border-left: 3px solid var(--gold);
 }
 .guide-section h3 {
     color: var(--gold);
-    font-size: 0.9rem;
-    margin-bottom: 0.3rem;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
 }
 .guide-text {
-    font-size: 0.88rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
-    line-height: 1.5;
+    line-height: 1.6;
 }
 .secret-box {
     border-left-color: #9333ea;
@@ -325,14 +329,13 @@ h1 {
     color: #e9d5ff;
 }
 
-/* 채팅창 모바일 반응형 스타일 */
+/* 5. 메신저(채팅) 화면 스타일 */
 .chat-container {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 16px;
     width: 100%;
-    height: 75vh; /* 화면 높이에 유연하게 맞춤 */
-    max-height: 520px;
+    height: 520px;
     display: flex;
     flex-direction: column;
     box-shadow: 0 15px 35px rgba(0,0,0,0.6);
@@ -340,40 +343,40 @@ h1 {
 }
 .chat-header {
     background: rgba(0,0,0,0.4);
-    padding: 0.9rem 1.2rem;
+    padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 .chat-title {
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--gold-light);
 }
 .chat-status {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: #22c55e;
 }
 .chat-messages {
     flex: 1;
-    padding: 1.2rem;
+    padding: 1.5rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 1rem;
 }
 .chat-bubble {
-    max-width: 82%;
-    padding: 0.75rem 1rem;
+    max-width: 80%;
+    padding: 0.8rem 1.1rem;
     border-radius: 14px;
-    font-size: 0.88rem;
-    line-line-height: 1.45;
+    font-size: 0.92rem;
+    line-height: 1.5;
     word-break: keep-all;
     animation: popIn 0.3s ease forwards;
 }
 @keyframes popIn {
-    from { opacity: 0; transform: translateY(8px); }
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 .chat-bubble.master {
@@ -390,23 +393,27 @@ h1 {
     border-top-right-radius: 2px;
 }
 .chat-options-area {
-    padding: 0.8rem;
+    padding: 1rem;
     background: rgba(0,0,0,0.3);
     border-top: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.6rem;
 }
 .chat-option-btn {
     background: rgba(212, 175, 55, 0.1);
     border: 1px solid var(--gold);
     color: var(--gold-light);
-    padding: 0.65rem 0.9rem;
+    padding: 0.75rem 1rem;
     border-radius: 8px;
     text-align: left;
     font-family: 'Noto Serif KR', serif;
-    font-size: 0.85rem;
-    line-height: 1.35;
+    font-size: 0.88rem;
     cursor: pointer;
     word-break: keep-all;
+    transition: all 0.2s ease;
+}
+.chat-option-btn:hover {
+    background: rgba(212, 175, 55, 0.25);
+    transform: translateX(4px);
 }
