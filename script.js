@@ -252,14 +252,13 @@ guideBtn.addEventListener('click', () => {
     document.getElementById('guide-secret').textContent = result.secret;
 });
 
-// [기숙사장과 대화하기] 버튼 클릭 시 채팅 화면으로 진입
+// 안내서 화면에서 [기숙사장과 대화하기] 버튼 클릭 이벤트 정상 작동 보장
 chatStartBtn.addEventListener('click', () => {
     guideScreen.classList.remove('active');
     chatScreen.classList.add('active');
     startChatSequence();
 });
 
-// 실시간 메신저 애니메이션 및 선택지 흐름 로직
 function startChatSequence() {
     let result = houseDetails[currentHouseKey];
     document.getElementById('chat-master-title').textContent = `${result.name} 기숙사장 ${result.masterName}`;
@@ -271,17 +270,14 @@ function startChatSequence() {
 
     const chatData = result.chat;
 
-    // 첫 번째 메시지 띄우기
     setTimeout(() => {
         appendMessage(chatData.first[0], 'master');
     }, 400);
 
-    // 두 번째 메시지 띄우기
     setTimeout(() => {
         appendMessage(chatData.first[1], 'master');
     }, 1400);
 
-    // 메시지가 다 나온 후 선택지 노출
     setTimeout(() => {
         showChatOptions(chatData.options);
     }, 2200);
@@ -305,10 +301,9 @@ function showChatOptions(options) {
         btn.className = 'chat-option-btn';
         btn.textContent = opt.text;
         btn.addEventListener('click', () => {
-            optionsContainer.innerHTML = ''; // 선택지 숨기기
-            appendMessage(opt.text, 'user'); // 유저 말풍선 추가
+            optionsContainer.innerHTML = '';
+            appendMessage(opt.text, 'user');
 
-            // 기숙사장 답장 딜레이 후 출력
             setTimeout(() => {
                 appendMessage(opt.reply, 'master');
             }, 800);
