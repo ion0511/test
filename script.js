@@ -1,4 +1,3 @@
-// 7문항 데이터 정의 (각 선택지는 wood, fire, metal, water 속성 부여)
 const questions = [
     {
         q: "천선원으로 향하는 비밀 입구 앞, 어떤 방법으로 결계를 해제하고 진입하시겠습니까?",
@@ -65,67 +64,79 @@ const questions = [
     }
 ];
 
-// 기숙사별 상세 정보 및 기숙사장 데이터 매칭
+// 기숙사별 상세 정보, 개별 이미지 파일, 안내서 내용 데이터
 const houseDetails = {
     wood: {
         name: "청룡관 (靑龍館)",
         element: "목(木) · 바람과 식물",
         desc: "창의와 성장의 명가. 유연하고 기발하며, 생명력과 변화를 중시하는 학생들이 모이는 곳입니다.",
-        masterName: "재희 기숙사장",
+        masterName: "재희", // 호칭 정리 반영
         quote: "\"바람이 머무는 곳, 성장의 한계는 없다. 청룡관에 온 걸 환영해.\"",
-        cssKey: "청룡"
+        imgSrc: "cheongryong.jpg",
+        slogan: "“바람을 타고, 끝없이 성장하라”",
+        curriculum: "• 영물 교감학: 동방의 신비로운 영물들과 교감하고 마음을 나누는 법.\n• 풍수지리와 비행술: 바람의 기류를 읽고 하늘을 자유롭게 활주하는 도술.",
+        secret: "밤마다 온실에서 들리는 정체불명의 피리 소리의 정체는 과연 무엇일까?"
     },
     fire: {
         name: "주작관 (朱雀館)",
         element: "화(火) · 불과 빛",
         desc: "열정과 예지의 명가. 용맹하고 정열적이며, 찰나의 직관과 뜨거운 도전 정신을 갖춘 학생들이 모이는 곳입니다.",
-        masterName: "시온 기숙사장",
+        masterName: "시온", // 호칭 정리 반영
         quote: "\"불꽃은 스스로 타오르는 법이지. 네 안에 숨겨진 열정을 태워봐.\"",
-        cssKey: "주작"
+        imgSrc: "jujak.jpg",
+        slogan: "“뜨겁게 타오르고, 세상을 밝혀라”",
+        curriculum: "• 련단술(약제·단약 제작): 불의 온도를 미세하게 조절해 신비로운 영단을 빚는 법.\n• 화염 환술: 찰나의 직관으로 화려한 불꽃과 환영을 다루는 도술.",
+        secret: "매주 연단실 화로가 폭발할 뻔한 진짜 범인은 사실 따로 있다는데…?"
     },
     metal: {
         name: "백호관 (白虎館)",
         element: "금(金) · 번개와 쇠",
         desc: "강직과 규율의 명가. 정의롭고 명예를 중시하며, 흔들리지 않는 단단한 결단력을 가진 학생들이 모이는 곳입니다.",
-        masterName: "유우시 기숙사장",
+        masterName: "유우시", // 호칭 정리 반영
         quote: "\"규율은 단단함을 만들고, 단단함은 우리를 지킨다. 길을 잃지 마.\"",
-        cssKey: "백호"
+        imgSrc: "baekho.jpg",
+        slogan: "“규율은 단단하게, 검은 흔들림 없이”",
+        curriculum: "• 법구 제작 및 주조: 번개와 쇠의 기운을 다루어 악귀를 막는 도구를 만드는 법.\n• 액막이 퇴마술: 사악한 기운을 단칼에 제압하는 실전 결계 전투술.",
+        secret: "지하 무기고 깊은 곳, 봉인된 은빛 검이 밤마다 울부짖는 이유는 무엇인가."
     },
     water: {
         name: "현무관 (玄武館)",
         element: "수(水) · 얼음과 암석",
-        desc: "지혜와 침묵의 명가. 냉철하고 차분하며, 고대의 은밀한 지식과 깊은 진리를 탐구하는 학생들이 모이는 곳입니다.",
-        masterName: "리쿠 기숙사장",
+        desc: "냉철하고 지혜를 탐구하는 은밀한 서고 같은 공간. 학교 설립의 비밀이 담긴 고대 비석이 숨겨져 있습니다.",
+        masterName: "리쿠", // 호칭 정리 반영
         quote: "\"물은 소리 없이 깊어지지. 진실을 찾는 법을 함께 배워보자.\"",
-        cssKey: "현무"
+        imgSrc: "hyeonmu.jpg",
+        slogan: "“고요함 속에 진실을 꿰뚫어라”",
+        curriculum: "• 고대 문자 해석: 상고시대의 잊혀진 문자를 해독하여 숨겨진 주술을 밝히는 법.\n• 음양오행 심화 이론: 세상의 이치와 수기(水氣)의 흐름을 극한까지 분석하는 학문.",
+        secret: "지하 서고 끝, 달빛이 비칠 때만 나타나는 비석의 숨겨진 문구에 담긴 진실은?"
     }
 };
 
-// 점수 저장 객체
 let scores = { wood: 0, fire: 0, metal: 0, water: 0 };
 let currentIdx = 0;
+let currentHouseKey = 'wood'; // 안내서로 넘길 때 사용하기 위해 저장
 
-// DOM 요소 선택
 const introScreen = document.getElementById('intro-screen');
 const testScreen = document.getElementById('test-screen');
 const loadingScreen = document.getElementById('loading-screen');
 const resultScreen = document.getElementById('result-screen');
+const guideScreen = document.getElementById('guide-screen'); // 안내서 화면
 
 const startBtn = document.getElementById('start-btn');
-const restartBtn = document.getElementById('restart-btn');
+const guideBtn = document.getElementById('guide-btn');
+const restartFromGuideBtn = document.getElementById('restart-from-guide-btn');
+
 const currentQSpan = document.getElementById('current-q');
 const questionText = document.getElementById('question-text');
 const optionsContainer = document.getElementById('options-container');
 const progressFill = document.getElementById('progress-fill');
 
-// 시작 버튼 이벤트
 startBtn.addEventListener('click', () => {
     introScreen.classList.remove('active');
     testScreen.classList.add('active');
     loadQuestion();
 });
 
-// 질문 로드 함수
 function loadQuestion() {
     const qData = questions[currentIdx];
     currentQSpan.textContent = currentIdx + 1;
@@ -142,7 +153,6 @@ function loadQuestion() {
     });
 }
 
-// 답변 선택 시 처리
 function handleAnswer(type) {
     scores[type]++;
     currentIdx++;
@@ -154,7 +164,6 @@ function handleAnswer(type) {
     }
 }
 
-// 결과 분석 로딩 연출
 function showLoading() {
     testScreen.classList.remove('active');
     loadingScreen.classList.add('active');
@@ -162,33 +171,42 @@ function showLoading() {
     setTimeout(() => {
         loadingScreen.classList.remove('active');
         showResult();
-    }, 1500); // 1.5초 후 결과 출력
+    }, 1500);
 }
 
-// 최종 결과 도출 및 화면 렌더링
 function showResult() {
     resultScreen.classList.add('active');
 
-    // 가장 높은 점수를 받은 속성 판별
-    let highestType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-    let result = houseDetails[highestType];
+    currentHouseKey = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+    let result = houseDetails[currentHouseKey];
 
-    // 결과 텍스트 매핑
     document.getElementById('result-house-name').textContent = result.name;
     document.getElementById('result-element').textContent = result.element;
     document.getElementById('result-desc').textContent = result.desc;
     document.getElementById('master-name').textContent = result.masterName;
     document.getElementById('master-quote').textContent = result.quote;
-
-    // 기숙사별 이미지 크롭 클래스 적용
-    const cropDiv = document.getElementById('house-img-crop');
-    cropDiv.className = `house-crop ${result.cssKey}`;
+    
+    // 개별 이미지 파일 바인딩
+    document.getElementById('house-img').src = result.imgSrc;
 }
 
-// 다시 하기 버튼
-restartBtn.addEventListener('click', () => {
+// '천선원 기숙사 생활 안내서 보러 가기' 버튼 클릭 이벤트
+guideBtn.addEventListener('click', () => {
+    resultScreen.classList.remove('active');
+    guideScreen.classList.add('active');
+
+    let result = houseDetails[currentHouseKey];
+    document.getElementById('guide-house-title').textContent = `${result.name} 생활 안내서`;
+    document.getElementById('guide-slogan').textContent = result.slogan;
+    document.getElementById('guide-curriculum').style.whiteSpace = "pre-line"; // 줄바꿈 유지
+    document.getElementById('guide-curriculum').textContent = result.curriculum;
+    document.getElementById('guide-secret').textContent = result.secret;
+});
+
+// 처음으로 돌아가기 버튼 클릭 이벤트
+restartFromGuideBtn.addEventListener('click', () => {
     scores = { wood: 0, fire: 0, metal: 0, water: 0 };
     currentIdx = 0;
-    resultScreen.classList.remove('active');
+    guideScreen.classList.remove('active');
     introScreen.classList.add('active');
 });
