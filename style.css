@@ -1,0 +1,299 @@
+:root {
+    --bg-color: #0b0f19;
+    --card-bg: rgba(18, 24, 38, 0.85);
+    --gold: #d4af37;
+    --gold-light: #f3e5ab;
+    --text-main: #e2e8f0;
+    --text-muted: #94a3b8;
+    --border-color: rgba(212, 175, 55, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Noto Serif KR', serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 몽환적인 안개 효과 배경 */
+.fog-container {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    background: radial-gradient(circle at center, #1a233a 0%, #0b0f19 100%);
+}
+.fog {
+    position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
+    animation: drift 20s infinite linear alternate;
+}
+@keyframes drift {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-50px, -30px) rotate(5deg); }
+}
+
+/* 화면 전환 공통 제어 */
+.screen {
+    display: none;
+    width: 100%;
+    max-width: 650px;
+    padding: 2rem;
+    animation: fadeIn 0.8s ease forwards;
+}
+.screen.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 1. 인트로 화면 */
+.intro-content {
+    text-align: center;
+}
+.subtitle {
+    color: var(--gold);
+    font-size: 0.95rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+h1 {
+    font-size: 3.2rem;
+    color: var(--gold-light);
+    margin: 0.5rem 0 1.2rem;
+    letter-spacing: 5px;
+}
+.desc {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+/* 원형 나침반 디자인 (첨부 이미지 활용) */
+.compass-circle {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 2.5rem;
+    border: 3px solid var(--gold);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+    position: relative;
+}
+.compass-img {
+    width: 400%; /* 4분할 이미지를 원형 안에서 좌우로 배치 */
+    height: 100%;
+    object-fit: cover;
+    animation: rotateCompass 30s infinite linear;
+}
+@keyframes rotateCompass {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-25%); }
+    50% { transform: translateX(-50%); }
+    75% { transform: translateX(-75%); }
+    100% { transform: translateX(0); }
+}
+
+/* 신비로운 버튼 스타일 */
+.mystic-btn {
+    background: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
+    color: #0b0f19;
+    border: none;
+    padding: 0.9rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: 'Noto Serif KR', serif;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+    transition: all 0.3s ease;
+}
+.mystic-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+}
+.mystic-btn.outline {
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    margin-top: 1.5rem;
+}
+
+/* 2. 테스트 화면 */
+.test-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 2.5rem;
+    border-radius: 16px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+#progress-fill {
+    height: 100%;
+    background: var(--gold);
+    width: 0%;
+    transition: width 0.4s ease;
+}
+.question-number {
+    color: var(--gold);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+.test-box h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.8rem;
+    line-height: 1.5;
+}
+.options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.option-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    padding: 1rem 1.2rem;
+    text-align: left;
+    border-radius: 8px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.option-btn:hover {
+    background: rgba(212, 175, 55, 0.15);
+    border-color: var(--gold);
+    transform: translateX(5px);
+}
+
+/* 3. 로딩 화면 */
+.loading-content {
+    text-align: center;
+}
+.spinner {
+    width: 60px; height: 60px;
+    border: 4px solid rgba(212, 175, 55, 0.2);
+    border-top: 4px solid var(--gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1.5rem;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 4. 결과 화면 스타일 */
+.result-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 2.5rem;
+    border-radius: 16px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+.result-badge {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+}
+.result-card h1 {
+    font-size: 2.5rem;
+    margin: 0.3rem 0;
+}
+.element-tag {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid var(--gold);
+    border-radius: 20px;
+    color: var(--gold);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+.result-img-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    border: 3px solid var(--gold);
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+.house-crop {
+    width: 400%;
+    height: 100%;
+    background-image: url('photo1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+/* 기숙사별 이미지 크롭 위치 매핑 */
+.house-crop.청룡 { background-position: 0% 0; }
+.house-crop.주작 { background-position: 33.3% 0; }
+.house-crop.백호 { background-position: 66.6% 0; }
+.house-crop.현무 { background-position: 100% 0; }
+
+.result-info {
+    text-align: left;
+    background: rgba(0,0,0,0.2);
+    padding: 1.2rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+.result-info h3 {
+    color: var(--gold);
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+}
+.result-info p {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+.master-box {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 0.8rem;
+}
+.master-label {
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+}
+.master-box h4 {
+    font-size: 1.1rem;
+    color: var(--text-main);
+    margin: 0.2rem 0;
+}
+.quote {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}

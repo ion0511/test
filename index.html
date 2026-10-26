@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>천선원(天仙院) - 입학 성향 심사</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 구글 폰트 (고풍스러운 느낌의 Serif 폰트) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 몽환적인 안개 배경 레이어 -->
+    <div class="fog-container">
+        <div class="fog"></div>
+    </div>
+
+    <div class="container">
+        <!-- 1. 인트로(메인) 화면 -->
+        <section id="intro-screen" class="screen active">
+            <div class="intro-content">
+                <span class="subtitle">비밀스러운 도술 교육 기관</span>
+                <h1>천 선 원</h1>
+                <p class="desc">
+                    세상의 이면, 구름과 안개 속에 숨겨진 도술 학교.<br>
+                    당신의 영혼이 품은 오행의 기운은 어느 방위를 향하고 있는가.<br>
+                    지금, 네 개의 결계 문이 당신을 기다립니다.
+                </p>
+                
+                <!-- 원형 동서남북 나침반 일러스트 미리보기 -->
+                <div class="compass-circle">
+                    <img src="photo1.jpg" alt="사신수 결계" class="compass-img">
+                    <div class="compass-overlay"></div>
+                </div>
+
+                <button id="start-btn" class="mystic-btn">입학 심사 시작하기</button>
+            </div>
+        </section>
+
+        <!-- 2. 테스트 질문 화면 -->
+        <section id="test-screen" class="screen">
+            <div class="test-box">
+                <div class="progress-bar">
+                    <div id="progress-fill"></div>
+                </div>
+                <div class="question-number">Question <span id="current-q">1</span> / 7</div>
+                <h2 id="question-text">질문 내용이 여기에 들어갑니다.</h2>
+                <div id="options-container" class="options-grid">
+                    <!-- 자바스크립트로 선택지 동적 생성 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 결과 분석 로딩 화면 -->
+        <section id="loading-screen" class="screen">
+            <div class="loading-content">
+                <div class="spinner"></div>
+                <h2>오행의 기운을 측정하는 중입니다...</h2>
+                <p>당신의 영혼과 공존할 기숙사를 찾는 중</p>
+            </div>
+        </section>
+
+        <!-- 4. 최종 결과 화면 -->
+        <section id="result-screen" class="screen">
+            <div class="result-card">
+                <span class="result-badge">배정된 기숙사</span>
+                <h1 id="result-house-name">기숙사 이름</h1>
+                <p id="result-element" class="element-tag">속성</p>
+                
+                <div class="result-img-container">
+                    <div id="house-img-crop" class="house-crop"></div>
+                </div>
+
+                <div class="result-info">
+                    <h3>기숙사 특징</h3>
+                    <p id="result-desc">기숙사 설명 내용</p>
+                    
+                    <div class="master-box">
+                        <span class="master-label">기숙사장</span>
+                        <h4 id="master-name">기숙사장 이름</h4>
+                        <p id="master-quote" class="quote">"기숙사장 환영 인사말"</p>
+                    </div>
+                </div>
+
+                <button id="restart-btn" class="mystic-btn outline">심사 다시 하기</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
