@@ -122,7 +122,6 @@ h1 {
     color: var(--gold);
 }
 
-/* 질문창 크기 흔들림 방지 (min-height 고정) */
 .test-box {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -280,7 +279,6 @@ h1 {
     font-size: 0.85rem;
 }
 
-/* 안내서 스타일 */
 .guide-card {
     text-align: left;
 }
