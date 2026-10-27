@@ -150,7 +150,7 @@
             margin-top: 1rem;
         }
 
-        /* 2. 테스트 화면 */
+        /* 2. 테스트 화면 (질문 높이 통일) */
         .test-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -620,7 +620,7 @@
                     { text: "다른 방식으로 시도해볼까 유연하게 여러 아이디어를 시도해본다", type: "wood" },
                     { text: "될 때까지 한다 열정을 가지고 계속 몸으로 부딪혀본다", type: "fire" },
                     { text: "교재에 적힌 정석 동작과 순서를 한 단계씩 다시 점검한다", type: "metal" },
-                    { text: "원리를 먼저 이해하기 위해 도술의 메커니즘을 깊이 분석한다", type: "water" }
+                    { text: "원리를 먼저 이해하기 위해 도술의 구조를 깊이 분석한다", type: "water" }
                 ]
             },
             {
@@ -633,7 +633,7 @@
                 ]
             },
             {
-                q: "팀 과제 중 의견이 갈려 팀원 간에 갈등이 생겼습니다 당신의 역할은",
+                q: "협동 과제 중 의견이 갈려 동료 간에 갈등이 생겼습니다 당신의 역할은",
                 options: [
                     { text: "양쪽의 의견을 유연하게 조율하며 기분 좋게 합의점을 찾는다", type: "wood" },
                     { text: "명확하고 시원시원하게 방향을 제시해 빠르게 결정을 내린다", type: "fire" },
@@ -646,7 +646,7 @@
                 options: [
                     { text: "친구들과 서로 물어보고 토론하며 흥미롭게 공부한다", type: "wood" },
                     { text: "단기간에 몰입해서 집중적으로 단숨에 끝낸다", type: "fire" },
-                    { text: "플래너를 짜서 매일 정해진 분량을 계획대로 공부한다", type: "metal" },
+                    { text: "일정표를 짜서 매일 정해진 분량을 계획대로 공부한다", type: "metal" },
                     { text: "혼자 고요한 곳에서 깊이 있게 개념을 탐구하며 공부한다", type: "water" }
                 ]
             },
@@ -720,7 +720,7 @@
                             reply: [
                                 "와 그걸 벌써 캐치했어? 센스 대박인데!",
                                 "맞아 그거 식으면 학교 전체 결계가 흔들리니까 절대 장난치면 안 돼",
-                                "매주 불 조절 실패해서 연기 뿜는 애들 구경하는 것도 꿀잼이지만 ㅋㅋ"
+                                "매주 불 조절 실패해서 연기 뿜는 애들 구경하는 것도 꿀잼이지만ㅋㅋ"
                             ]
                         },
                         {
@@ -748,7 +748,7 @@
                     first: [
                         "도착했군",
                         "백호관은 규율을 중시해 안내서 읽어봤으면 우리 관이 어떤 곳인지 감이 왔겠지",
-                        "훈련이 꽤 깐깐하겠지만 정신 바짝 차리면 네 실력은 확실히 책임져 주마"
+                        "훈련이 꽤 깐깐하겠지만 정신 바짝 차리면 네 실력은 확실히 책임져줄게"
                     ],
                     options: [
                         {
@@ -763,7 +763,7 @@
                         {
                             text: "규율이 엄격하다고 하니 조금 긴장되기는 하네요",
                             reply: [
-                                "지나치게 긴장할 필요는 없다",
+                                "지나치게 긴장할 필요는 없어",
                                 "엄격한 만큼 너를 가장 단단하게 지켜주는 방패가 되어줄 테니까",
                                 "길 잃지 않게 바짝 따라오기나 해"
                             ]
@@ -780,7 +780,7 @@
                 imgSrc: "hyeonmu.jpg",
                 slogan: "고요함 속에 진실을 꿰뚫어라",
                 curriculum: "• 고대 문자 해석: 상고시대의 잊혀진 문자를 해독하여 숨겨진 주술을 밝히는 법\n• 음양오행 심화 이론: 세상의 이치와 수기의 흐름을 극한까지 분석하는 학문",
-                secret: "지하 서고 끝 달빛이 비칠 때만 나타나는 비석의 숨겨진 문구에 담긴 진실은",
+                secret: "지하 서고 끝 달빛이 비칠 때만 나타나는 비석의 숨겨진 문구에 담긴 진실은...",
                 chat: {
                     first: [
                         "어서 와",
@@ -801,7 +801,7 @@
                             text: "조용히 깊이 있게 음양오행 이론을 배워보고 싶습니다",
                             reply: [
                                 "좋은 자세야",
-                                "물은 소리 없이 깊어지는 법이니까 우리 함께 천천히 원리를 깨달아보자",
+                                "물은 소리 없이 깊어지는 법이니까 천천히 원리를 깨달아보자",
                                 "언제든 편하게 서고 문을 두드려"
                             ]
                         }
@@ -928,7 +928,6 @@
             resultScreen.classList.add('active');
         });
 
-        // 엔터(배열) 단위로 톡톡 쏘아주는 순차적 메시지 출력 로직
         function startChatSequence() {
             let result = houseDetails[currentHouseKey];
             document.getElementById('chat-master-title').textContent = `${result.masterName} 기숙사장`;
@@ -945,7 +944,7 @@
                 setTimeout(() => {
                     appendMessage(msgText, 'master');
                 }, delay);
-                delay += 800; // 0.8초 간격으로 톡 연달아 출력
+                delay += 800;
             });
 
             setTimeout(() => {
@@ -974,7 +973,6 @@
                     optionsContainer.innerHTML = '';
                     appendMessage(opt.text, 'user');
 
-                    // 기숙사장의 분할 답장 순차 출력
                     let delay = 600;
                     opt.reply.forEach((replyText) => {
                         setTimeout(() => {
@@ -983,7 +981,6 @@
                         delay += 800;
                     });
 
-                    // 대화 마무리에 공통 '천선원 생활 다짐' 버튼 생성
                     setTimeout(() => {
                         showFinalCommitmentBtn();
                     }, delay + 400);
@@ -992,7 +989,7 @@
             });
         }
 
-        // 공통 마무리 버튼 (좋아요 앞으로 천선원에서 생활 잘 부탁드려요!)
+        // 4인 4색 최종 마무리 멘트 분기 처리 로직 (슬래시 기준 엔터 분할)
         function showFinalCommitmentBtn() {
             const optionsContainer = document.getElementById('chat-options');
             optionsContainer.innerHTML = '';
@@ -1006,9 +1003,36 @@
                 optionsContainer.innerHTML = '';
                 appendMessage("좋아요 앞으로 천선원에서 생활 잘 부탁드려요!", 'user');
 
-                setTimeout(() => {
-                    appendMessage("그래! 멋진 학창 시절을 만들어 보자 언제든 찾아와!", 'master');
-                }, 600);
+                let replies = [];
+                if (currentHouseKey === 'wood') {
+                    replies = [
+                        "그래! 언제든 바람처럼 편하게 놀러 와",
+                        "함께 흘러갈 시간은 많으니까"
+                    ];
+                } else if (currentHouseKey === 'fire') {
+                    replies = [
+                        "좋아! 앞으로 우리 함께 뜨겁게 부딪혀보자고",
+                        "심심할 틈은 절대 없을 테니까 기대해!"
+                    ];
+                } else if (currentHouseKey === 'metal') {
+                    replies = [
+                        "그렇다면 거친 칼바람이 불어와도 내가 곁에서 단단하게 버텨주지",
+                        "나와 함께면 길을 잃지 않을 거야"
+                    ];
+                } else if (currentHouseKey === 'water') {
+                    replies = [
+                        "마음에 드는 대답이네",
+                        "소란스러운 세상에서 벗어나 우리만의 깊은 사색에 잠겨보자"
+                    ];
+                }
+
+                let delay = 600;
+                replies.forEach((rep) => {
+                    setTimeout(() => {
+                        appendMessage(rep, 'master');
+                    }, delay);
+                    delay += 800;
+                });
             });
 
             optionsContainer.appendChild(finalBtn);
